@@ -9,6 +9,7 @@ library(tibble,warn.conflicts = FALSE)
 
 in_path <- "D:/GM_OCOD/Account/source"
 out_path <- "D:/GM_OCOD/Account/Output/"
+val_path <- "D:/GM_OCOD/Account/Validation/"
 conf <- fread("D:/GM_OCOD/Account/Conf/Account_conf.csv",na="")
 batch_size <- 100000
 req_cols <- unique(na.omit(conf$REQ_COL))
@@ -26,7 +27,7 @@ sel_data_out <- vector('integer')
 lov_data_df  <- data.table(column = character(), Value = character())
 
 for(i in 1:length(file_name)) {
-
+  
   sel_data <- fread(file_name[i],select = sel_cols)  
   sel_data_out <- c(sel_data_out,colSums(!(sel_data=="" | is.na(sel_data) |sel_data==" "))) 
   
@@ -62,7 +63,7 @@ sel_data_df <- data.frame(col_name=names(sel_data_out),count =as.integer(sel_dat
 sel_data_df <- sel_data_df %>% group_by(col_name) %>% summarise(count=sum(count)) %>% filter(count>0) %>% arrange(count)
 
 
-setwd(out_path)
+setwd(val_path)
 fwrite(Req_Data_df,"Req_Data_Val.csv")
 fwrite(sel_data_df,"Sel_Data_Val.csv")
 fwrite(lov_data_df,"Lov_Data_Val.csv")
