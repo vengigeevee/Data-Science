@@ -60,7 +60,7 @@ Req_Data_df <- data.frame(col_name=names(Req_Data_out),count =as.integer(Req_Dat
 Req_Data_df <- Req_Data_df %>% group_by(col_name) %>% summarise(count=sum(count)) %>% filter(count>0) %>% arrange(desc(count))
 
 sel_data_df <- data.frame(col_name=names(sel_data_out),count =as.integer(sel_data_out)) 
-sel_data_df <- sel_data_df %>% group_by(col_name) %>% summarise(count=sum(count)) %>% filter(count>0) %>% arrange(count)
+sel_data_df <- sel_data_df %>% group_by(col_name) %>% summarise(count=sum(count)) %>% arrange(count)
 
 
 setwd(val_path)
