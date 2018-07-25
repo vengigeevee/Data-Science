@@ -71,6 +71,6 @@ fwrite(lov_data_df,"Lov_Data_Val.csv")
 rm(lov_data_df)
 
 t2 <- Sys.time()
-t2-t1
+print(t2-t1)
 
 .rs.restartR()
